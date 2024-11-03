@@ -1,11 +1,4 @@
-import {
-  HeroBannerContainer,
-  HeroBtn,
-  HeroContent,
-  HeroH1,
-  HeroText,
-} from './Hero.styled';
-import heroBanner from '../../images/mobile/hero-dog-mobi.png';
+import { HeroBtn, HeroContent, HeroH1, HeroText } from './Hero.styled';
 import Section from '../base/Section';
 
 const Hero = () => {

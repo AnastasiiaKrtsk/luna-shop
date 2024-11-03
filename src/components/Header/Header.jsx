@@ -1,3 +1,4 @@
+//Header.jsx
 import {
   Nav,
   HeaderMove,
@@ -23,6 +24,10 @@ import { FaInstagram, FaTelegram, FaTiktok } from 'react-icons/fa';
 const Header = () => {
   const isBackdropOpen = useSelector((state) => state.backdrop.isBackdropOpen);
   const dispatch = useDispatch();
+
+  const closeBackdrop = () => {
+    dispatch(toggleAction());
+  };
 
   return (
     <Section>
@@ -66,12 +71,7 @@ const Header = () => {
             </NavSocialContainer>
 
             <Link href="./">
-              <BurgerMenu
-                onClick={() => {
-                  dispatch(toggleAction());
-                }}
-                type="button"
-              >
+              <BurgerMenu onClick={closeBackdrop} type="button">
                 <IoMenu stroke={'#ffffff'} size={32} />
               </BurgerMenu>
             </Link>
@@ -79,7 +79,7 @@ const Header = () => {
         </Nav>
       </HeaderMove>
 
-      {isBackdropOpen && <Backdrop />}
+      {isBackdropOpen && <Backdrop onClose={closeBackdrop} />}
     </Section>
   );
 };

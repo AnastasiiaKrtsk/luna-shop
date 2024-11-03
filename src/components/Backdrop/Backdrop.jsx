@@ -1,5 +1,11 @@
-//Backdrop.jsx
 import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggleAction } from '../../redux/slices/backdropSlice';
+
+import { iconSize } from '../../utils/imgSettings';
+import { iconColor } from '../../utils/imgSettings';
+
 import {
   BackdropContainer,
   LinksContainer,
@@ -8,62 +14,100 @@ import {
   SunSvg,
   ThemeSwitcher,
   ThemeSwitcherContainer,
-  BurgerMenu,
+  CloseIcon,
 } from './Backrop.styled';
 
-import { IoMenu } from 'react-icons/io5';
-import { FaInstagram } from 'react-icons/fa';
-import { FaTiktok } from 'react-icons/fa';
-import { FaTelegram } from 'react-icons/fa6';
+import { FaInstagram, FaTiktok, FaTelegram } from 'react-icons/fa';
 import { BiLogoGmail } from 'react-icons/bi';
-
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { toggleAction } from '../../redux/slices/backdropSlice';
+import { useEffect, useRef } from 'react';
+import { IoMdArrowRoundForward } from 'react-icons/io';
 
 const backdropRoot = document.querySelector('#backdrop-root');
 
-const Backdrop = () => {
-  const dispatch = useDispatch();
+const Backdrop = ({ onClose }) => {
+  const linkRefs = useRef([]);
+
+  useEffect(() => {
+    // Close on Esc key
+    const handleKeyDown = (event) => {
+      console.log('handleKeyDown');
+      if (event.key === 'Escape') {
+        onClose?.(); //? if no onClose provided
+      }
+    };
+    const handleClickOutside = (e) => {
+      const isLinkClicked = linkRefs.current.some(
+        (link) => link && link.contains(e.target)
+      );
+
+      if (!isLinkClicked) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return createPortal(
     <BackdropContainer>
       <NavContainer>
-        <Link href="./">
-          <BurgerMenu
+        <Link to="/">
+          {/* <CloseIcon
             onClick={() => {
               dispatch(toggleAction());
             }}
             type="button"
           >
-            <IoMenu stroke={'#ffffff'} size={32} />
-          </BurgerMenu>
+            <IoMdArrowRoundForward
+              color={iconColor.yellow}
+              size={iconSize.meg}
+            />
+          </CloseIcon> */}
         </Link>
         <StyledLinks
+          ref={(el) => (linkRefs.current[0] = el)}
           href="https://www.instagram.com/luna.animalshop/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <LinksContainer>
-            <FaInstagram stroke={'#ffffff'} size={32} />
+            <FaInstagram color={iconColor.white} size={iconSize.lg} />
             Instagram
           </LinksContainer>
         </StyledLinks>
-        <StyledLinks href="./">
+        <StyledLinks
+          ref={(el) => (linkRefs.current[1] = el)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <LinksContainer>
-            <FaTiktok stroke={'#ffffff'} size={32} />
+            <FaTiktok color={iconColor.white} size={iconSize.lg} />
             TikTok
           </LinksContainer>
         </StyledLinks>
-        <StyledLinks href="./">
+        <StyledLinks
+          ref={(el) => (linkRefs.current[2] = el)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <LinksContainer>
-            <FaTelegram stroke={'#ffffff'} size={32} />
+            <FaTelegram color={iconColor.white} size={iconSize.lg} />
             Telegram
           </LinksContainer>
         </StyledLinks>
-        <StyledLinks href="./">
+        <StyledLinks
+          ref={(el) => (linkRefs.current[3] = el)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <LinksContainer>
-            <BiLogoGmail stroke={'#ffffff'} size={32} />
+            <BiLogoGmail color={iconColor.white} size={iconSize.lg} />
             Gmail
           </LinksContainer>
         </StyledLinks>
@@ -77,4 +121,5 @@ const Backdrop = () => {
     backdropRoot
   );
 };
+
 export default Backdrop;
