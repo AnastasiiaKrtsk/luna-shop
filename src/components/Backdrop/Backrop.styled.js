@@ -4,12 +4,14 @@ import { FiSun } from 'react-icons/fi';
 export const BackdropContainer = styled.div`
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(133, 99, 191, 0.5);
   backdrop-filter: blur(4px);
   /* backdrop-filter: blur(0px); */
+
+  max-width: 358px;
 `;
 export const NavContainer = styled.div`
   display: flex;
