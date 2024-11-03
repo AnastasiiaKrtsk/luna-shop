@@ -6,11 +6,12 @@ import {
   HeroText,
 } from './Hero.styled';
 import heroBanner from '../../images/mobile/hero-dog-mobi.png';
-import Section from 'components/base/Section';
+import Section from '../base/Section';
+
 const Hero = () => {
   return (
-    <Section>
-      <HeroContent>
+    <HeroContent>
+      <Section>
         <HeroH1>
           Lorem ipsum dolor sit amet consectetur. Leo a in nibh ipsum tempor
           diam.
@@ -29,11 +30,8 @@ const Hero = () => {
             До магазину
           </a>
         </HeroBtn>
-        <HeroBannerContainer>
-          <img src={heroBanner} alt="" />
-        </HeroBannerContainer>
-      </HeroContent>
-    </Section>
+      </Section>
+    </HeroContent>
   );
 };
 export default Hero;

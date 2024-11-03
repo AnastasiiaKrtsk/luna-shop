@@ -94,29 +94,6 @@ textarea {
   resize: none;
 }
 
-@media screen and (max-width: 768px) {
-  .container {
-    /* max-width: 320px; */
-    padding: 0 17px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
-    padding-left: 112px;
-    padding-right: 112px;
-    padding-left: 90px;
-    padding-right: 90px;
-  }
-}
 .visually-hidden {
   position: absolute;
   width: 1px;

@@ -20,4 +20,16 @@ export const ButtonShop = styled.button`
 
 export const StyledSection = styled.section`
   padding: 0;
+
+  @media screen and (max-width: 768px) {
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 526px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 1120px;
+    padding-left: 160px;
+  }
 `;
