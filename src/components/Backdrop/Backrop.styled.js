@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FiSun } from 'react-icons/fi';
+import { iconColor } from '../../utils/imgSettings';
 
 export const BackdropContainer = styled.div`
   position: fixed;
@@ -9,9 +10,13 @@ export const BackdropContainer = styled.div`
   height: 100vh;
   background-color: rgba(133, 99, 191, 0.5);
   backdrop-filter: blur(4px);
-  /* backdrop-filter: blur(0px); */
 
-  max-width: 358px;
+  @media screen and (min-width: 680px) {
+    max-width: 358px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 export const NavContainer = styled.div`
   display: flex;
@@ -27,10 +32,9 @@ export const StyledLinks = styled.a`
   font-weight: bold;
   transition: color var(--smooth), transform var(--smooth);
 
-  &:hover,
-  &:focus {
+  &:hover {
     transform: scale(1.1);
-    color: #ffe437;
+    color: ${iconColor.yellow};
   }
 `;
 
@@ -70,9 +74,14 @@ export const LinksContainer = styled.nav`
   gap: 14px;
 `;
 
-export const BurgerMenu = styled.div`
+export const CloseIcon = styled.div`
   position: fixed;
-  top: 15px;
-  right: 18px;
-  transition: transform var(--smooth);
+
+  @media screen and (min-width: 680px) {
+    display: none;
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
 `;
