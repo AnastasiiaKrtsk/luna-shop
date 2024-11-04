@@ -14,13 +14,11 @@ import {
   SunSvg,
   ThemeSwitcher,
   ThemeSwitcherContainer,
-  CloseIcon,
 } from './Backrop.styled';
 
 import { FaInstagram, FaTiktok, FaTelegram } from 'react-icons/fa';
 import { BiLogoGmail } from 'react-icons/bi';
 import { useEffect, useRef } from 'react';
-import { IoMdArrowRoundForward } from 'react-icons/io';
 
 const backdropRoot = document.querySelector('#backdrop-root');
 
@@ -30,7 +28,6 @@ const Backdrop = ({ onClose }) => {
   useEffect(() => {
     // Close on Esc key
     const handleKeyDown = (event) => {
-      console.log('handleKeyDown');
       if (event.key === 'Escape') {
         onClose?.(); //? if no onClose provided
       }

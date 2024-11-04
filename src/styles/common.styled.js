@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ButtonShop = styled.button`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,26 +10,14 @@ export const ButtonShop = styled.button`
   border: none;
   border-radius: 10px;
 
-  transition: color var(--smooth);
+  transition: background-color var(--smooth);
 
-  &:hover,
-  &:focus {
-    color: #21aca7;
-  }
-`;
-
-export const StyledSection = styled.section`
-  padding: 0;
-
-  @media screen and (max-width: 768px) {
+  &:hover {
+    background-color: #26a7a3;
   }
 
-  @media screen and (min-width: 768px) {
-    max-width: 526px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    max-width: 1120px;
-    padding-left: 160px;
+  @media screen and (min-width: 680px) {
+    font-size: 24px;
+    padding: 15px 64px;
   }
 `;

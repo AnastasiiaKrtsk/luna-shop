@@ -16,8 +16,8 @@ export const HeaderMove = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    left: 177px;
-    right: 177px;
+    left: 160px;
+    right: 160px;
   }
 `;
 
