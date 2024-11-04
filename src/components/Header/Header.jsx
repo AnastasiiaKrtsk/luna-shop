@@ -16,7 +16,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleAction } from '../../redux/slices/backdropSlice';
 import Backdrop from '../Backdrop/Backdrop';
-import Section from '../base/Section';
 import { BiLogoGmail } from 'react-icons/bi';
 import { LinksContainer, StyledLinks } from '../Backdrop/Backrop.styled';
 import { FaInstagram, FaTelegram, FaTiktok } from 'react-icons/fa';
@@ -30,7 +29,7 @@ const Header = () => {
   };
 
   return (
-    <Section>
+    <>
       <HeaderMove>
         <Nav>
           <HeaderContent>
@@ -80,7 +79,7 @@ const Header = () => {
       </HeaderMove>
 
       {isBackdropOpen && <Backdrop onClose={closeBackdrop} />}
-    </Section>
+    </>
   );
 };
 

@@ -7,13 +7,14 @@ import pawsDesktop from '../../images/desktop/paws-desktop.png';
 import heroBannerMobi from '../../images/mobile/hero-dog-mobi.png';
 import heroBannerTab from '../../images/tablet/hero-dog-tab.png';
 import heroBannerDesktop from '../../images/desktop/hero-dog-desktop.png';
+import { Button } from '../../styles/common.styled';
 
-export const HeroContent = styled.div`
-  background: url(${heroBannerMobi}) no-repeat bottom,
+export const HeroBg = styled.section`
+  background: url(${heroBannerMobi}) no-repeat bottom -30px center,
     url(${pawsMobi}) no-repeat bottom 50px center,
     var(--bg-color-light) no-repeat;
   background-size: clamp(200px), contain, cover;
-  padding: 90px 17px 350px;
+  padding: 90px 17px 380px;
 
   @media screen and (min-width: 680px) {
     background: url(${heroBannerTab}) no-repeat bottom -15px right 0px,
@@ -26,7 +27,7 @@ export const HeroContent = styled.div`
       url(${pawsDesktop}) no-repeat bottom 10px center,
       var(--bg-color-light) no-repeat;
     background-size: 428px 536px auto auto, contain, cover;
-    padding: 150px 17px 350px;
+    padding: 150px 160px 350px;
   }
 `;
 export const HeroH1 = styled.h1`
@@ -50,18 +51,7 @@ export const HeroText = styled.p`
   }
 `;
 
-export const HeroBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  padding: 15px 25px;
-  border: none;
-  border-radius: 10px;
-
-  transition: background-color var(--smooth);
-
+export const HeroBtn = styled(Button)`
   &::after {
     content: '';
     stroke: aliceblue;
@@ -70,14 +60,6 @@ export const HeroBtn = styled.button`
     width: 24px;
     height: 24px;
     background: url(${arrow}) no-repeat center center;
-  }
-
-  &:hover {
-    background-color: #1d9c98;
-  }
-  @media screen and (min-width: 680px) {
-    font-size: 24px;
-    padding: 15px 64px;
   }
 `;
 
