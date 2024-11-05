@@ -19,80 +19,89 @@ import Rabbit from '../../images/tablet/rabbit-png-tab.png';
 //*=====================================
 export const CategoriesContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+
   align-items: center;
   justify-content: center;
+
+  flex-direction: ${({ isdesk }) => (isdesk ? 'row' : 'column')};
   gap: 20px;
   width: 100%;
-
-  @media screen and (min-width: 1064px) {
-    gap: 65px;
-  }
 `;
+//?=====================================
 export const DogsContainer = styled.div`
-  background: url(${dogsBg}) no-repeat bottom, var(--bg-color-vio);
+  background: url(${dogsBg}) repeat bottom, var(--bg-color-vio);
   border-radius: 10px;
-  min-width: 100px;
   min-height: 100px;
   max-height: 400px;
-  max-width: 400px;
   width: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
   gap: 15px;
 
   color: var(--white);
   font-size: var(--semi-big);
   font-weight: var(--bolder);
 
-  @media screen and (min-width: 1024px) {
-    background: url(${dogsBgDesk}) no-repeat bottom 50px center,
-      var(--bg-color-vio);
+  transition: var(--smooth);
 
-    min-height: 346px;
-    min-width: 100px;
+  &:hover {
+    cursor: pointer;
 
-    display: block;
-  }
-
-  @media screen and (min-width: 1440px) {
-    max-width: 430px;
+    transform: scale(1.05);
   }
 `;
 
-//*=====================================
 export const CatsContainer = styled(DogsContainer)`
-  background: url(${catsBg}) no-repeat bottom, var(--bg-color-gre);
-
-  @media screen and (min-width: 1024px) {
-    max-width: 300px;
-    background: url(${catsBgDesk}) no-repeat bottom, var(--bg-color-gre);
-  }
-  @media screen and (min-width: 1440px) {
-    max-width: 330px;
-  }
+  background: url(${catsBg}) repeat bottom, var(--bg-color-gre);
 `;
 export const RodentsContainer = styled(DogsContainer)`
-  background: url(${rodentsBg}) no-repeat bottom, var(--bg-color-yel);
+  background: url(${rodentsBg}) repeat bottom, var(--bg-color-yel);
+`;
+//&=====================================
+export const DogsContainerDesk = styled(DogsContainer)`
+  background: url(${Dog}) no-repeat center center,
+    url(${dogsBgDesk}) no-repeat bottom 50px center, var(--bg-color-vio);
+  min-height: 346px;
+  min-width: 100px;
+  max-width: 430px;
 
-  @media screen and (min-width: 1024px) {
-    background: url(${rodentsBgDesk}) no-repeat right, var(--bg-color-yel);
-    max-width: 200px;
-  }
+  display: flex;
+  align-items: flex-end;
+`;
 
-  @media screen and (min-width: 1440px) {
-    max-width: 230px;
-  }
+export const CatsContainerDesk = styled(DogsContainerDesk)`
+  background: url(${Cat}) no-repeat center center,
+    url(${dogsBgDesk}) no-repeat bottom 50px center, var(--bg-color-gre);
+`;
+export const RodentsContainerDesk = styled(DogsContainerDesk)`
+  background: url(${Rabbit}) no-repeat center center,
+    url(${dogsBgDesk}) no-repeat bottom 50px center, var(--bg-color-yel);
 `;
 
 //*=====================================
 export const MixDiv1 = styled(DogsContainer)`
-  display: flex;
   background: var(--rgba-vio);
   transition: var(--smooth);
+  backdrop-filter: blur(1px);
+`;
+export const MixDiv2 = styled(MixDiv1)`
+  background: var(--rgba-gre);
+`;
+export const MixDiv3 = styled(MixDiv1)`
+  background: var(--rgba-yel);
+`;
 
+//?=====================================
+export const MixDiv1Text = styled.p`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--white);
+  font-size: var(--semi-big);
+  font-weight: var(--bolder);
   &::after {
     content: '';
     display: inline-block;
@@ -100,68 +109,24 @@ export const MixDiv1 = styled(DogsContainer)`
     height: var(--large);
     background: url(${svgDog}) no-repeat center center;
   }
-  &:hover {
-    cursor: pointer;
-    background: var(--rgba-vio-hover);
-  }
-
-  @media screen and (min-width: 1024px) {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    background: url(${Dog}) no-repeat center center, rgba(187, 123, 217, 0.2);
-
-    &::after {
-      display: none;
-    }
-    &:hover {
-      cursor: default;
-      background: url(${Dog}) no-repeat center center, rgba(187, 123, 217, 0.2);
-    }
-  }
 `;
-export const MixDiv2 = styled(MixDiv1)`
+
+export const MixDiv2Text = styled(MixDiv1Text)`
   &::after {
     background: url(${svgCat}) no-repeat center center;
   }
-  background: var(--rgba-gre);
-  &:hover {
-    cursor: pointer;
-    background: var(--rgba-gre-hover);
-  }
-
-  @media screen and (min-width: 1024px) {
-    background: url(${Cat}) no-repeat center center, rgba(43, 174, 170, 0.2);
-    &:hover {
-      cursor: default;
-      background: url(${Cat}) no-repeat center center, rgba(43, 174, 170, 0.2);
-    }
-  }
 `;
-export const MixDiv3 = styled(MixDiv1)`
-  background: var(--rgba-yel);
 
+export const MixDiv3Text = styled(MixDiv1Text)`
   &::after {
     background: url(${svgRodent}) no-repeat center center;
   }
-  &:hover {
-    cursor: pointer;
-    background: var(--rgba-yel-hover);
-  }
-
-  @media screen and (min-width: 1024px) {
-    background: url(${Rabbit}) no-repeat center center, rgba(252, 217, 4, 0.2);
-    &:hover {
-      cursor: default;
-      background: url(${Rabbit}) no-repeat center center, rgba(252, 217, 4, 0.2);
-    }
-  }
 `;
-
-//*=====================================
+//&=====================================
 export const MixInsideDiv1 = styled.div`
-  min-height: 86px;
-  min-width: 100%;
+  width: 100%;
+  height: 80px;
+
   padding: 15px;
   border-radius: 10px;
   background: var(--rgba-vio);
@@ -174,10 +139,10 @@ export const MixInsideDiv1 = styled.div`
   transition: var(--smooth);
 
   &:hover {
-    cursor: pointer;
-    min-height: 150px;
-    padding-top: 15px; /* Adjust padding to move text upwards */
-    padding-bottom: 150px; /* Adjust bottom padding for space */
+    /* cursor: pointer; */
+    /* max-height: 160px;
+    padding-top: 15px;
+    padding-bottom: 160px; */
   }
 `;
 export const MixInsideDiv2 = styled(MixInsideDiv1)`

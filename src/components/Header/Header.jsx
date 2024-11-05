@@ -1,7 +1,7 @@
 //Header.jsx
 import {
   Nav,
-  HeaderMove,
+  HeaderContainer,
   HeaderContent,
   BurgerMenu,
   NavText,
@@ -19,6 +19,8 @@ import Backdrop from '../Backdrop/Backdrop';
 import { BiLogoGmail } from 'react-icons/bi';
 import { LinksContainer, StyledLinks } from '../Backdrop/Backrop.styled';
 import { FaInstagram, FaTelegram, FaTiktok } from 'react-icons/fa';
+import { useMediaQuery } from 'react-responsive';
+import { iconSize } from '../../utils/imgSettings';
 
 const Header = () => {
   const isBackdropOpen = useSelector((state) => state.backdrop.isBackdropOpen);
@@ -28,55 +30,66 @@ const Header = () => {
     dispatch(toggleAction());
   };
 
+  const isDesk = useMediaQuery({
+    query: '(min-width: 1024px) ',
+  });
+
   return (
     <>
-      <HeaderMove>
-        <Nav>
-          <HeaderContent>
+      <HeaderContainer>
+        <HeaderContent>
+          <Nav>
             <Link href="./">
               <picture>
-                <source srcSet={logoDesk} media="(min-width: 1440px)" />
-                <source srcSet={logo} media="(max-width: 1439px)" />
+                <source srcSet={logoDesk} media="(min-width: 769px)" />
+                <source srcSet={logo} media="(max-width: 1023)" />
                 <img src={logo} alt="logo" />
               </picture>
             </Link>
+            {isDesk ? (
+              <>
+                <NavText>Магазин товарів для ваших хвостиків</NavText>
 
-            <NavText>Магазин товарів для ваших хвостиків</NavText>
-            <NavSocialContainer>
-              <StyledLinks
-                href="https://www.instagram.com/luna.animalshop/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <LinksContainer>
-                  <FaInstagram stroke={'#ffffff'} size={32} />
-                </LinksContainer>
-              </StyledLinks>
-              <StyledLinks href="./">
-                <LinksContainer>
-                  <FaTiktok stroke={'#ffffff'} size={32} />
-                </LinksContainer>
-              </StyledLinks>
-              <StyledLinks href="./">
-                <LinksContainer>
-                  <FaTelegram stroke={'#ffffff'} size={32} />
-                </LinksContainer>
-              </StyledLinks>
-              <StyledLinks href="./">
-                <LinksContainer>
-                  <BiLogoGmail stroke={'#ffffff'} size={32} />
-                </LinksContainer>
-              </StyledLinks>
-            </NavSocialContainer>
+                <NavSocialContainer>
+                  <LinksContainer>
+                    <StyledLinks
+                      href="https://www.instagram.com/luna.animalshop/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaInstagram stroke={'#ffffff'} size={iconSize.lg} />
+                    </StyledLinks>
+                  </LinksContainer>
 
-            <Link href="./">
-              <BurgerMenu onClick={closeBackdrop} type="button">
-                <IoMenu stroke={'#ffffff'} size={32} />
-              </BurgerMenu>
-            </Link>
-          </HeaderContent>
-        </Nav>
-      </HeaderMove>
+                  <LinksContainer>
+                    <StyledLinks href="./">
+                      <FaTiktok stroke={'#ffffff'} size={iconSize.lg} />
+                    </StyledLinks>
+                  </LinksContainer>
+
+                  <LinksContainer>
+                    <StyledLinks href="./">
+                      <FaTelegram stroke={'#ffffff'} size={iconSize.lg} />
+                    </StyledLinks>
+                  </LinksContainer>
+
+                  <LinksContainer>
+                    <StyledLinks href="./">
+                      <BiLogoGmail stroke={'#ffffff'} size={iconSize.lg} />
+                    </StyledLinks>
+                  </LinksContainer>
+                </NavSocialContainer>
+              </>
+            ) : (
+              <Link href="./">
+                <BurgerMenu onClick={closeBackdrop} type="button">
+                  <IoMenu stroke={'#ffffff'} size={iconSize.lg} />
+                </BurgerMenu>
+              </Link>
+            )}
+          </Nav>
+        </HeaderContent>
+      </HeaderContainer>
 
       {isBackdropOpen && <Backdrop onClose={closeBackdrop} />}
     </>
