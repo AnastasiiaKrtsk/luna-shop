@@ -1,7 +1,5 @@
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { toggleAction } from '../../redux/slices/backdropSlice';
 
 import { iconSize } from '../../utils/imgSettings';
 import { iconColor } from '../../utils/imgSettings';
@@ -49,7 +47,7 @@ const Backdrop = ({ onClose }) => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [onClose]);
 
   return createPortal(
     <BackdropContainer>
